@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2 style="color:rgb(54, 27, 136)">Web Service Lab - Book Store</h2>
+    <h3  style="color:rgb(54, 27, 136)">2027MCA0014</h3>
+    </head>
+    
+    <body>
+    <h4 style="color:rgb(17, 95, 17)">General Book</h4>
+    <p id="demo"></p>
+    <hr>
+    <h4 style="color:rgb(125, 24, 112)">My Book</h4>
+    <p id="mybook"></p>
+    <hr>
+<script>
+var xhttp=new XMLHttpRequest();
+xhttp.onreadystatechange=function(){
+    if(xhttp.readyState==4&&xhttp.status==200){
+        myFunction(xhttp);
+    }
+}
+
+xhttp.open("GET","books.xml");
+xhttp.send();
+function myFunction(xml){
+    var xmlDoc=xml.responseXML;
+    document.getElementById("demo").innerHTML =
+xmlDoc.getElementsByTagName("title")[0].childNodes[0].nodeValue+"<br>"+xmlDoc.getElementsByTagName("author")[0].childNodes[0].nodeValue
++"<br>"+xmlDoc.getElementsByTagName("year")[0].childNodes[0].nodeValue;
+
+document.getElementById("mybook").innerHTML =
+xmlDoc.getElementsByTagName("title")[1].childNodes[0].nodeValue+"<br>"+xmlDoc.getElementsByTagName("author")[1].childNodes[0].nodeValue
++"<br>"+xmlDoc.getElementsByTagName("year")[1].childNodes[0].nodeValue;
+}
+</script>
+
+</body>
+</html>
